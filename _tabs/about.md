@@ -4,5 +4,8 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+Hi, I'm Sharvin Rao.
+
+Cybersecurity Student | eJPT Certified | CTF Player | Aspiring SOC Analyst
+
+This blog documents my cybersecurity journey through CTF writeups, SOC investigations, threat hunting exercises, and security projects.
