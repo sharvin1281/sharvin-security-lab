@@ -13,14 +13,14 @@ timezone:
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
-title: "Sharvin Security Lab"
+title: "STR Security Lab"
 tagline: "CTF Writeups | SOC Labs | Threat Hunting"
 description: "Cybersecurity Student | eJPT Certified | CTF Player | Aspiring SOC Analyst"
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://sharvin1281.github.io"
-baseurl: "/sharvin-security-lab"
+url: "https://STR1281.github.io"
+baseurl: "/STR-security-lab"
 
 github:
   username: github_username # change to your GitHub username
