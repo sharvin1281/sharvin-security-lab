@@ -63,4 +63,24 @@ The scan identified the IP address of the DC-1 machine as **192.168.100.113**, w
 
 ![Netdiscover Scan](/assets/img/netdiscover.png)
 
+## Enumeration
+
+After identifying the target IP address, the next step was to enumerate the system to discover open ports, running services, and technologies that could be used as potential attack vectors.
+
+### Port Scanning
+
+I performed a service and version scan using **Nmap** to identify accessible services running on the target machine.
+
+**Command**
+
+```bash
+nmap -p- -sV 192.168.100.113
+```
+
+**Explanation**
+
+The scan identified HTTP (Port 80) as the primary attack surface. Since the web server was publicly accessible, it became the main focus for further investigation.
+
+
+
 
