@@ -61,4 +61,6 @@ sudo netdiscover
 
 The scan identified the IP address of the DC-1 machine as **192.168.100.113**, which became the target for the remainder of the penetration test.
 
+![Netdiscover Scan](/assets/img/netdiscover.png)
+
 
