@@ -89,6 +89,40 @@ After opening the target IP address in a web browser, I discovered that the appl
 
 This indicated that the target was using a Content Management System (CMS), which could potentially contain known vulnerabilities if it was running an outdated version.
 
+![Drupal Homepage](/assets/img/drupal-page.png)
+
+
+### Source Code Inspection
+
+The page source and browser developer tools were inspected to identify technologies used by the application.
+
+Several Drupal-specific JavaScript files were discovered, confirming that the web application was running the Drupal CMS.
+
+![Source Code Inspection](/assets/img/source-code.png)
+
+### Robots.txt Analysis
+
+The robots.txt file was reviewed because it can sometimes reveal directories or files that are not intended for public indexing.
+
+Several Drupal-related directories were listed, providing additional information about the application's structure and confirming that the target was a Drupal installation.
+
+![robots.txt](/assets/img/robots.png)
+
+### Technology Fingerprinting
+
+To gather more information about the target web server, I used WhatWeb.
+
+**Command**
+
+```bash
+whatweb http://192.168.100.113
+```
+
+**Explanation**
+
+The scan identified Drupal 7 and other web technologies used by the target. Since older versions of Drupal are known to contain critical vulnerabilities, this information was valuable for the next phase of the assessment.
+
+![WhatWeb Scan](/assets/img/whatweb.png)
 
 
 
