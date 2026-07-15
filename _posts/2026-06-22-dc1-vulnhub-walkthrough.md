@@ -81,6 +81,8 @@ nmap -p- -sV 192.168.100.113
 
 The scan identified HTTP (Port 80) as the primary attack surface. Since the web server was publicly accessible, it became the main focus for further investigation.
 
+![Nmap Scan](/assets/img/nmap.png)
+
 
 
 
