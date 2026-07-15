@@ -83,6 +83,12 @@ The scan identified HTTP (Port 80) as the primary attack surface. Since the web 
 
 ![Nmap Scan](/assets/img/nmap.png)
 
+### Web Application Enumeration
+
+After opening the target IP address in a web browser, I discovered that the application was running a Drupal-based website with a login page.
+
+This indicated that the target was using a Content Management System (CMS), which could potentially contain known vulnerabilities if it was running an outdated version.
+
 
 
 
