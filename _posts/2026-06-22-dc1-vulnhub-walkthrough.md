@@ -25,3 +25,40 @@ In this walkthrough, I will demonstrate how I identified the target, gathered in
 | Web Server | Apache |
 | CMS | Drupal 7 |
 | Goal | Obtain Root Access |
+
+## Lab Setup
+
+Before starting the penetration test, I prepared a safe and isolated lab environment to ensure that no real systems were affected during the assessment.
+
+### Environment
+
+| Component | Details |
+|----------|---------|
+| Attacker Machine | Kali Linux |
+| Target Machine | DC-1 (VulnHub) |
+| Virtualization Software | VirtualBox |
+| Network Configuration | Host-Only Adapter |
+
+The attacker machine (Kali Linux) and the target machine (DC-1) were connected using a Host-Only network, allowing communication between both virtual machines while keeping them isolated from the public internet.
+
+## Reconnaissance
+
+Reconnaissance is the first phase of penetration testing. The goal is to identify the target machine and gather as much information as possible before attempting any exploitation.
+
+Since the DC-1 virtual machine was running inside a VirtualBox Host-Only network, its IP address was initially unknown. Therefore, I performed network discovery from the Kali Linux attacker machine.
+
+### Network Discovery
+
+I used **Netdiscover** to identify active hosts on the local network.
+
+**Command:**
+
+```bash
+sudo netdiscover
+```
+
+**Explanation**
+
+The scan identified the IP address of the DC-1 machine as **192.168.100.113**, which became the target for the remainder of the penetration test.
+
+
