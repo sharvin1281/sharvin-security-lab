@@ -228,4 +228,103 @@ This provided initial access to the target machine, allowing further post-exploi
 > Successful exploitation of the Drupalgeddon2 vulnerability resulted in remote access to the target system through a Meterpreter session.
 
 
+## Post-Exploitation
+
+After obtaining a Meterpreter session, I performed post-exploitation activities to gather additional information about the target system and identify possible privilege escalation vectors.
+
+### Upgrading to an Interactive Shell
+
+To improve shell stability and gain access to standard Linux commands, I upgraded the Meterpreter shell to a fully interactive Bash shell.
+
+**Command**
+
+```bash
+python -c 'import pty; pty.spawn("/bin/bash")'
+```
+
+**Explanation**
+
+The upgraded shell provided a more stable environment for system enumeration and privilege escalation.
+
+![Shell Upgrade](/assets/img/shell.png)
+
+### SUID Enumeration
+
+To identify potential privilege escalation opportunities, I searched the system for SUID-enabled binaries.
+
+**Command**
+
+```bash
+find / -perm -u=s -type f 2>/dev/null
+```
+
+**Explanation**
+
+Several SUID binaries were identified during enumeration. One of the most interesting findings was **/usr/bin/find**, which is known to have privilege escalation techniques documented on GTFOBins.
+
+![SUID Enumeration](/assets/img/suid.png)
+
+## Privilege Escalation
+
+After identifying the SUID-enabled `find` binary, I used a GTFOBins technique to obtain root privileges.
+
+### Exploiting the SUID Find Binary
+
+**Commands**
+
+```bash
+find / -name index.php -exec "/bin/sh" \;
+whoami
+```
+
+**Explanation**
+
+The `find` binary was executed with elevated privileges, spawning a root shell. Running the `whoami` command confirmed that the current user was **root**.
+
+![Root Access](/assets/img/root.png)
+
+> **Key Finding**
+>
+> The misconfigured SUID `find` binary allowed privilege escalation to root, resulting in full administrative control of the target system.
+
+
+## Final Flag Retrieval
+
+After obtaining root access, I navigated to the root user's directory and retrieved the final flag.
+
+**Commands**
+
+```bash
+cd /root
+ls
+cat thefinalflag.txt
+```
+
+**Explanation**
+
+Successfully retrieving the final flag confirmed that the penetration test had achieved its objective and that the target machine had been fully compromised.
+
+![Final Flag](/assets/img/final-flag.png)
+
+## Recommendations
+
+Based on the findings during this assessment, the following security improvements are recommended:
+
+- Keep Drupal and all installed modules updated with the latest security patches.
+- Remove unnecessary files that expose application information.
+- Restrict access to sensitive directories and configuration files.
+- Regularly audit SUID and SGID binaries to prevent privilege escalation.
+- Apply the Principle of Least Privilege (PoLP) for all users and services.
+- Perform regular vulnerability assessments and penetration testing.
+
+## Conclusion
+
+This walkthrough demonstrated the complete penetration testing lifecycle against the DC-1 vulnerable machine, beginning with reconnaissance and ending with full root compromise.
+
+Throughout the assessment, I identified the target, enumerated services, analyzed vulnerabilities, exploited the Drupalgeddon2 (CVE-2018-7600) vulnerability, performed post-exploitation activities, escalated privileges using a misconfigured SUID binary, and successfully retrieved the final flag.
+
+DC-1 is an excellent beginner-friendly machine for learning web application exploitation, Linux enumeration, and privilege escalation in a controlled environment. It provides valuable hands-on experience and reinforces the importance of secure system configuration, timely patching, and the principle of least privilege.
+
+
+
 
