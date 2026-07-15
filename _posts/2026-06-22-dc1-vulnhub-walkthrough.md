@@ -124,5 +124,35 @@ The scan identified Drupal 7 and other web technologies used by the target. Sinc
 
 ![WhatWeb Scan](/assets/img/whatweb.png)
 
+## Vulnerability Analysis
+
+After identifying the target as a Drupal 7 web application, the next step was to determine whether any publicly known vulnerabilities affected the installed version.
+
+### Exploit Research
+
+I used **Searchsploit** to search Exploit-DB for publicly available exploits related to Drupal 7.
+
+**Command**
+
+```bash
+searchsploit drupal 7
+```
+
+**Explanation**
+
+The search returned several Drupal-related exploits. Among them, **Drupalgeddon2 (CVE-2018-7600)** was identified as the most suitable attack vector because it allows unauthenticated remote code execution (RCE) on vulnerable Drupal installations.
+
+![Searchsploit Results](/assets/img/searchsploit.png)
+
+### Why Drupalgeddon2?
+
+Drupalgeddon2 (CVE-2018-7600) is a critical Remote Code Execution (RCE) vulnerability affecting vulnerable Drupal 7 installations. It allows an attacker to execute arbitrary commands on the server without authentication.
+
+Since the target machine was running an outdated version of Drupal, this vulnerability provided a reliable path to gain initial access.
+
+> **Key Finding**
+>
+> The vulnerability assessment confirmed that the target was susceptible to **Drupalgeddon2 (CVE-2018-7600)**, making it possible to proceed with remote exploitation.
+
 
 
