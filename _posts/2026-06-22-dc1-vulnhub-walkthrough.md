@@ -155,4 +155,77 @@ Since the target machine was running an outdated version of Drupal, this vulnera
 > The vulnerability assessment confirmed that the target was susceptible to **Drupalgeddon2 (CVE-2018-7600)**, making it possible to proceed with remote exploitation.
 
 
+## Exploitation
+
+After confirming that the target was vulnerable to Drupalgeddon2 (CVE-2018-7600), I proceeded with exploitation using the Metasploit Framework. This framework provides a reliable exploit module for vulnerable Drupal installations.
+
+### Starting Metasploit
+
+The first step was to launch the Metasploit Framework.
+
+**Command**
+
+```bash
+msfconsole
+```
+
+**Explanation**
+
+Metasploit loaded successfully and provided the environment required to configure and execute the Drupal exploit.
+
+![Metasploit Framework](/assets/img/metasploit-frame.png)
+
+### Searching for the Exploit Module
+
+To locate the appropriate exploit, I searched the Metasploit module database.
+
+**Command**
+
+```bash
+search drupal
+```
+
+**Explanation**
+
+Among the available modules, the **Drupal Drupalgeddon2 Remote Code Execution** exploit was selected because it targets the vulnerability identified during the analysis phase.
+
+![Metasploit Search](/assets/img/search-drupal.png)
+
+### Configuring the Exploit
+
+After selecting the exploit module, I configured the required options before launching the attack.
+
+**Commands**
+
+```bash
+use exploit/unix/webapp/drupal_drupalgeddon2
+set RHOSTS 192.168.100.113
+run
+```
+
+**Explanation**
+
+The target IP address was configured using the `RHOSTS` parameter. Once all required options were set, the exploit was executed against the vulnerable Drupal server.
+
+![Drupalgeddon2 Exploit](/assets/img/config.png)
+
+### Successful Exploitation
+
+The exploit completed successfully and established a Meterpreter reverse shell session.
+
+This provided initial access to the target machine, allowing further post-exploitation and privilege escalation activities.
+
+**Evidence**
+
+- Target IP configured successfully
+- Meterpreter session established
+- Remote command execution achieved
+
+![Meterpreter Session](/assets/img/meterperter.png)
+
+> **Key Finding**
+>
+> Successful exploitation of the Drupalgeddon2 vulnerability resulted in remote access to the target system through a Meterpreter session.
+
+
 
