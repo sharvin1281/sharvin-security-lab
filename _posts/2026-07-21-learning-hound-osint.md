@@ -74,7 +74,7 @@ cd hound
 
 ## Screenshot
 
-![Cloning the Hound Repository](/assets/osint/01.jpg)
+![Cloning the Hound Repository](/assets/osint/03.jpg)
 
 ---
 
@@ -92,7 +92,7 @@ The output shows the main Hound script along with its supporting files.
 
 ## Screenshot
 
-![Repository Contents](/assets/osint/02.jpg)
+![Repository Contents](/assets/osint/04.jpg)
 
 ---
 
