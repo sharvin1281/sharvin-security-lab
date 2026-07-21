@@ -52,3 +52,50 @@ The objective of this exercise was to understand how information gathering works
 | Purpose | Educational OSINT Lab |
 
 ---
+
+# Step 1: Download the Hound Repository
+
+The first step was to clone the official Hound repository from GitHub into the Kali Linux machine.
+
+This downloads all the required files needed to run the tool locally.
+
+## Command
+
+```bash
+cd ~/Music
+git clone https://github.com/techchipnet/hound
+```
+
+After cloning the repository, navigate into the project folder.
+
+```bash
+cd hound
+```
+
+## Screenshot
+
+![Cloning the Hound Repository](/assets/osint/01.jpg)
+
+---
+
+# Step 2: Verify the Repository Contents
+
+After entering the project directory, I listed the available files to ensure the repository was downloaded successfully.
+
+## Command
+
+```bash
+ls
+```
+
+The output shows the main Hound script along with its supporting files.
+
+## Screenshot
+
+![Repository Contents](/assets/osint/02.jpg)
+
+---
+
+# Explanation
+
+At this stage, Hound has not been executed yet. The repository has simply been downloaded to the local machine. Before running the script, Linux requires executable permission to be assigned to the main script.
