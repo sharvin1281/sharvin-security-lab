@@ -99,3 +99,45 @@ The output shows the main Hound script along with its supporting files.
 # Explanation
 
 At this stage, Hound has not been executed yet. The repository has simply been downloaded to the local machine. Before running the script, Linux requires executable permission to be assigned to the main script.
+
+# Step 3: Configure Permissions and Launch Hound
+
+Before running the Hound tool, I configured the required file permissions and then executed the script.
+
+## Commands
+
+```bash
+chmod +w hound.sh
+chmod +x hound.sh
+bash hound.sh
+```
+
+### Command Explanation
+
+- `chmod +w hound.sh` grants write permission to the script.
+- `chmod +x hound.sh` grants execute permission so Linux can run the script.
+- `bash hound.sh` starts the Hound application using the Bash shell.
+
+> **Note:** Normally, only `chmod +x` is required to execute the script. The `chmod +w` command was included because it was used during this lab.
+
+### Screenshot
+
+![Configuring Permissions and Launching Hound](/assets/osint/05.jpg)
+
+---
+
+# Step 4: Hound Interface
+
+After executing the script, the Hound interface was displayed in the terminal. This interface provides the available tunneling options and prepares the local web server for information gathering.
+
+At this stage, the tool is ready to generate a public URL using a tunneling service.
+
+### Screenshot
+
+![Hound Main Interface](/assets/osint/06.jpg)
+
+---
+
+## Analysis
+
+The Hound interface confirms that the tool has started successfully. The next step is to select a tunneling service, such as **Cloudflare Tunnel**, to create a temporary public URL that can be accessed from another device for testing purposes.
