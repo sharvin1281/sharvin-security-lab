@@ -141,3 +141,42 @@ At this stage, the tool is ready to generate a public URL using a tunneling serv
 ## Analysis
 
 The Hound interface confirms that the tool has started successfully. The next step is to select a tunneling service, such as **Cloudflare Tunnel**, to create a temporary public URL that can be accessed from another device for testing purposes.
+
+# Step 5: Launch Hound and Select Cloudflare Tunnel
+
+After launching Hound, the main interface was displayed in the terminal. The tool provides several tunneling options that can be used to expose the local web server to the internet.
+
+For this lab, I selected **Cloudflare Tunnel** because it generates a temporary public HTTPS URL without requiring port forwarding or additional network configuration.
+
+## Available Tunnel Options
+
+```text
+[01] Localhost
+[02] Ngrok
+[03] Cloudflare
+```
+
+I selected:
+
+```text
+03
+```
+
+## Why Cloudflare Tunnel?
+
+Cloudflare Tunnel was chosen because it offers several advantages:
+
+- Generates a temporary public HTTPS URL
+- No router port forwarding required
+- Secure encrypted connection
+- Quick and simple setup for testing purposes
+
+### Screenshot
+
+![Hound Interface and Cloudflare Selection](/assets/osint/07.jpg)
+
+---
+
+## Analysis
+
+After selecting Cloudflare Tunnel, Hound initialized the tunnel service and began creating a temporary public URL. This URL would be used in the next step to access the hosted page from another device.
