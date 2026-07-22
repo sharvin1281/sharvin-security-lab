@@ -180,3 +180,60 @@ Cloudflare Tunnel was chosen because it offers several advantages:
 ## Analysis
 
 After selecting Cloudflare Tunnel, Hound initialized the tunnel service and began creating a temporary public URL. This URL would be used in the next step to access the hosted page from another device.
+
+# Step 6: Collect Device and Geolocation Information
+
+After accessing the generated Cloudflare URL from my test device, Hound successfully collected information that was publicly available through the browser. This included browser metadata, device information, and geolocation data after location permission was granted.
+
+> **Note:** This demonstration was performed using my own device in a controlled lab environment for educational purposes only.
+
+---
+
+## 6.1 Device Information
+
+The first result displayed detailed information about the device and browser used to access the generated URL.
+
+The collected information included:
+
+- Public IP Address
+- Browser Name
+- Operating System
+- Device Platform
+- Browser Language
+- Screen Resolution
+- CPU Cores
+- RAM Information
+- Cookies Status
+- User Agent
+
+This information can be useful during reconnaissance because it helps identify the target's operating system, browser version, and hardware characteristics.
+
+### Screenshot
+
+![Device Information](/assets/osint/08.jpg)
+
+---
+
+## 6.2 Geolocation Information
+
+After location permission was granted, Hound successfully retrieved the device's approximate geographic location.
+
+The collected information included:
+
+- Latitude
+- Longitude
+- Google Maps URL
+
+This demonstrates how browser permissions can reveal sensitive location information when users allow websites to access their location.
+
+### Screenshot
+
+![Geolocation Information](/assets/osint/09.jpg)
+
+---
+
+## Analysis
+
+This exercise demonstrates how publicly available browser metadata and user-granted permissions can expose valuable information. While modern browsers require users to approve location access, attackers may exploit social engineering techniques to persuade victims to grant these permissions.
+
+Understanding how these techniques work helps cybersecurity professionals identify reconnaissance activities, investigate phishing incidents, and educate users about safe browsing practices.
