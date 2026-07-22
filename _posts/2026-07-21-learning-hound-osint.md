@@ -53,6 +53,10 @@ The objective of this exercise was to understand how information gathering works
 
 ---
 
+## Lab Preview
+
+![Hound OSINT Lab](/assets/osint/10.jpg)
+
 # Step 1: Download the Hound Repository
 
 The first step was to clone the official Hound repository from GitHub into the Kali Linux machine.
