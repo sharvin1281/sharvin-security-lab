@@ -1,5 +1,5 @@
 ---
-title: "Learning OSINT with Hound: Information Gathering & Geolocation Awareness"
+title: "Find Anyone's Location Using OSINT"
 date: 2026-07-21
 categories:
   - OSINT
@@ -15,7 +15,7 @@ toc: true
 comments: true
 ---
 
-# Learning OSINT with Hound: Information Gathering & Geolocation Awareness
+# Find Anyone's Location Using OSINT
 
 ## Introduction
 
