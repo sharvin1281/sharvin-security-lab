@@ -64,7 +64,9 @@ user's password through a brute-force attack.
  
 ### Evidence 
 Failed password for admin from 198.51.100.23 
-Failed password for backup from 198.51.100.23 
+
+Failed password for backup from 198.51.100.23
+
 Failed password for oracle from 198.51.100.23 
 
 ### SOC Analysis 
