@@ -28,25 +28,6 @@ The project also involved creating detection rules, classifying incidents based 
 
 ---
 
-## Table of Contents
-
-1. [Log Analysis](#10-log-analysis)
-   - [1.1 Introduction](#11-introduction)
-   - [1.2 Overview of Log Files](#12-overview-of-log-files)
-   - [1.3 Failed Login Attempts](#13-failed-login-attempts)
-   - [1.4 Successful Logins](#14-successful-logins)
-   - [1.5 Suspicious IP Addresses](#15-suspicious-ip-addresses)
-   - [1.6 Unusual User Activities](#16-unusual-user-activities)
-   - [1.7 Other Abnormal Behaviour](#17-other-abnormal-behaviour)
-   - [1.8 Summary of Log Analysis](#18-summary-of-log-analysis)
-2. [Detection Logic](#20-detection-logic)
-3. [Incident Workflow](#30-incident-workflow)
-4. [Incident Response Lifecycle](#40-incident-response-lifecycle)
-5. [Conclusion](#50-conclusion)
-6. [Project Files](#project-files)
-
----
-
 # 1.0 Log Analysis
 
 ## 1.1 Introduction
