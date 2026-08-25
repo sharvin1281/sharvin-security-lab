@@ -53,6 +53,7 @@ In this project, the provided `auth.log` and `syslog.log` files were analyzed to
 
 ### What was observed?
 Example: 
+
 • Multiple "Failed password" entries were identified.  
 • Most failed attempts originated from the same IP address.  
 • Several different usernames were targeted.  
