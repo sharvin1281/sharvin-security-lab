@@ -108,4 +108,112 @@ Failed password for oracle from 198.51.100.23.
 The repeated failures from the same IP suggest an automated attack rather than a 
 legitimate user entering an incorrect password.
 
+# 1.4 Successful Logins
+
+## What Was Observed?
+
+The logs contained successful authentication events.
+
+### Examples Include
+
+| Authentication Event | User |
+|----------------------|------|
+| Accepted publickey | aritra |
+| Accepted password | backup |
+| Accepted password | sysupdate |
+
+## Normal vs Suspicious
+
+| Normal Activity | Suspicious Activity |
+|----------------|---------------------|
+| Public key login by authorized users | Successful login immediately after numerous failed attempts |
+| Login during expected working hours | Successful login from an attacking IP |
+
+## Why Is It Important?
+
+A successful login following repeated failed attempts may indicate that the attacker successfully guessed the user's password.
+
+# 1.5 Suspicious IP Addresses
+
+## What Was Observed?
+
+One IP address repeatedly attempted to access multiple user accounts.
+
+### Example
+
+| Suspicious IP Address |
+|-----------------------|
+| 198.51.100.23 |
+
+## Why Is This Suspicious?
+
+A legitimate user normally accesses only their own account.
+
+An attacker commonly:
+
+- Tries multiple usernames
+- Performs password guessing
+- Continues until a login succeeds
+
+## Possible Impact
+
+| Impact | Description |
+|--------|-------------|
+| Unauthorized access | An attacker may gain access to an account without authorization. |
+| Account compromise | User accounts may be compromised if the attacker successfully authenticates. |
+| Data theft | Compromised accounts may be used to access or steal sensitive information. |
+
+# 1.6 Unusual User Activities
+
+## What Was Observed?
+
+The logs showed attempts to access multiple accounts using the same IP address.
+
+### Example Usernames
+
+| Username |
+|----------|
+| admin |
+| postgres |
+| oracle |
+| backup |
+| sysupdate |
+
+## Why Is This Suspicious?
+
+Normal users already know their username.
+
+Attackers often test many common usernames before guessing passwords.
+
+This behavior is called **username enumeration**.
+
+# 1.7 Other Abnormal Behaviour
+
+## Examples
+
+The following abnormal behaviours were identified during the log analysis:
+
+- Login after many failed attempts.
+- Multiple accounts accessed from one IP.
+- Continuous login attempts within a short period.
+- Unexpected authentication methods.
+- Unusual login times (if present).
+
+---
+
+# 1.8 Summary of Log Analysis
+
+The following table summarizes the activities identified during the log analysis and their classifications.
+
+| Activity | Classification | Reason |
+|----------|----------------|--------|
+| CRON Jobs | Normal | Scheduled system maintenance |
+| DHCP Renewal | Normal | Automatic network operation |
+| Reload Nginx | Normal | Service configuration reload |
+| Public Key Login | Normal | Secure authentication |
+| Failed Login Attempts | Suspicious | Possible brute-force attack |
+| Invalid Usernames | Suspicious | Username enumeration |
+| Successful Login After Failures | Suspicious | Possible account compromise |
+| Same IP Repeated Attempts | Suspicious | Automated attack |
+
 
