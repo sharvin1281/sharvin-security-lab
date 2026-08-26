@@ -97,9 +97,11 @@ Repeated failed login attempts often indicate that someone is trying to guess a 
 
 ## Evidence
 
-```text
+
 Failed password for admin from 198.51.100.23
+
 Failed password for backup from 198.51.100.23
+
 Failed password for oracle from 198.51.100.23.
 
 ## SOC Analysis
