@@ -211,9 +211,314 @@ The following table summarizes the activities identified during the log analysis
 | DHCP Renewal | Normal | Automatic network operation |
 | Reload Nginx | Normal | Service configuration reload |
 | Public Key Login | Normal | Secure authentication |
+
+# 2.0 Detection Logic
+
+Detection logic defines the conditions used to identify potentially suspicious authentication activities. The following rules were developed based on the log analysis performed in this project.
+
+## Rule 1
+
+### Detection Rule
+
+If more than 5 failed login attempts occur from the same IP address within 10 minutes, generate an alert.
+
+### Reason
+
+Repeated failed logins often indicate a brute-force password attack.
+
+### Severity
+
+**Medium**
+
+---
+
+## Rule 2
+
+### Detection Rule
+
+If an IP attempts to log in using more than 5 different usernames, generate an alert.
+
+### Reason
+
+Attackers commonly enumerate usernames before attempting password attacks.
+
+### Severity
+
+**Medium**
+
+---
+
+## Rule 3
+
+### Detection Rule
+
+If a successful login occurs immediately after multiple failed login attempts from the same IP, generate a High severity alert.
+
+### Reason
+
+This may indicate the attacker successfully guessed the user's password.
+
+### Severity
+
+**High**
+
+---
+
+## Rule 4
+
+### Detection Rule
+
+If one IP successfully logs into multiple user accounts within a short period, generate an alert.
+
+### Reason
+
+This behaviour may indicate compromised credentials or lateral movement.
+
+### Severity
+
+**High**
+
+---
+
+## Rule 5
+
+### Detection Rule
+
+If an administrator account logs in outside normal working hours, for example between 12:00 AM and 5:00 AM, generate an alert.
+
+### Reason
+
+Administrative logins outside business hours may indicate unauthorized access.
+
+### Severity
+
+**Medium**
+
+---
+
+## Detection Rules Summary
+
+| Rule | Detection Condition | Reason | Severity |
+|------|----------------------|--------|----------|
+| Rule 1 | More than 5 failed login attempts from the same IP within 10 minutes | Possible brute-force password attack | Medium |
+| Rule 2 | More than 5 different usernames attempted from one IP | Possible username enumeration | Medium |
+| Rule 3 | Successful login immediately after multiple failed attempts from the same IP | Possible password compromise | High |
+| Rule 4 | One IP successfully logs into multiple user accounts within a short period | Possible compromised credentials or lateral movement | High |
+| Rule 5 | Administrator login between 12:00 AM and 5:00 AM | Possible unauthorized administrative access | Medium |
 | Failed Login Attempts | Suspicious | Possible brute-force attack |
 | Invalid Usernames | Suspicious | Username enumeration |
 | Successful Login After Failures | Suspicious | Possible account compromise |
 | Same IP Repeated Attempts | Suspicious | Automated attack |
 
+# 4.0 Detection Logic
 
+The incident response process follows a structured workflow consisting of six stages:
+
+**Detection → Alert → Investigation → Response → Recovery → Closure**
+
+---
+
+## Step 1 – Detection
+
+Security monitoring tools identify suspicious activities from the logs, such as repeated failed logins, invalid usernames, or successful logins after many failed attempts.
+
+**Output:** Suspicious activity is detected.
+
+---
+
+## Step 2 – Alert
+
+Detection rules trigger an alert in the Security Information and Event Management (SIEM) system.
+
+The alert contains information such as:
+
+- Source IP address
+- Username
+- Timestamp
+- Event type
+- Severity level
+
+**Output:** SOC analyst is notified.
+
+---
+
+## Step 3 – Investigation
+
+The SOC analyst reviews the logs to determine whether the alert represents a genuine security incident.
+
+The investigation includes:
+
+- Reviewing authentication logs
+- Checking login history
+- Identifying affected accounts
+- Correlating related events
+- Assessing the scope of the incident
+
+**Output:** Incident confirmed or dismissed as a false positive.
+
+---
+
+## Step 4 – Response
+
+If malicious activity is confirmed, immediate actions are taken to contain the threat.
+
+Possible actions include:
+
+- Blocking the attacker's IP address
+- Resetting compromised passwords
+- Disabling affected accounts
+- Isolating compromised systems
+- Escalating the incident to senior analysts
+
+**Output:** Threat contained.
+
+---
+
+## Step 5 – Recovery
+
+Affected systems are restored to a secure state.
+
+Typical recovery actions include:
+
+- Verifying system integrity
+- Restoring services if needed
+- Applying security patches
+- Re-enabling user accounts after verification
+- Confirming that no malicious activity remains
+
+**Output:** Normal business operations resume securely.
+
+---
+
+## Step 6 – Closure
+
+After the incident is resolved, the SOC team documents the findings and lessons learned.
+
+The closure process includes:
+
+- Completing the incident report
+- Recording the root cause
+- Updating detection rules
+- Recommending security improvements
+- Closing the incident ticket
+
+**Output:** Incident formally closed, with improvements in place to reduce the likelihood of similar attacks in the future.
+
+---
+
+## Incident Response Workflow
+
+| Stage | Main Activity | Output |
+|-------|---------------|--------|
+| Detection | Identify suspicious activities from logs | Suspicious activity detected |
+| Alert | Detection rules trigger a SIEM alert | SOC analyst notified |
+| Investigation | Analyze logs and determine whether the alert is genuine | Incident confirmed or dismissed |
+| Response | Contain and respond to the confirmed threat | Threat contained |
+| Recovery | Restore affected systems to a secure state | Normal operations resume |
+| Closure | Document findings and lessons learned | Incident formally closed |
+
+# 4.0 Detection Logic
+
+The incident response process consists of six stages:
+
+**Detection → Alert → Investigation → Response → Recovery → Closure**
+
+---
+
+## Step 1 – Detection
+
+Security monitoring tools identify suspicious activities from the logs, such as repeated failed logins, invalid usernames, or successful logins after many failed attempts.
+
+**Output:** Suspicious activity is detected.
+
+---
+
+## Step 2 – Alert
+
+Detection rules trigger an alert in the Security Information and Event Management (SIEM) system.
+
+The alert contains information such as:
+
+- Source IP address
+- Username
+- Timestamp
+- Event type
+- Severity level
+
+**Output:** SOC analyst is notified.
+
+---
+
+## Step 3 – Investigation
+
+The SOC analyst reviews the logs to determine whether the alert represents a genuine security incident.
+
+The investigation includes:
+
+- Reviewing authentication logs
+- Checking login history
+- Identifying affected accounts
+- Correlating related events
+- Assessing the scope of the incident
+
+**Output:** Incident confirmed or dismissed as a false positive.
+
+---
+
+## Step 4 – Response
+
+If malicious activity is confirmed, immediate actions are taken to contain the threat.
+
+Possible actions include:
+
+- Blocking the attacker's IP address
+- Resetting compromised passwords
+- Disabling affected accounts
+- Isolating compromised systems
+- Escalating the incident to senior analysts
+
+**Output:** Threat contained.
+
+---
+
+## Step 5 – Recovery
+
+Restore affected systems to a secure state.
+
+Typical recovery actions include:
+
+- Verifying system integrity
+- Restoring services if needed
+- Applying security patches
+- Re-enabling user accounts after verification
+- Confirming that no malicious activity remains
+
+**Output:** Normal business operations resume securely.
+
+---
+
+## Step 6 – Closure
+
+After the incident is resolved, the SOC team documents the findings and lessons learned.
+
+The closure process includes:
+
+- Completing the incident report
+- Recording the root cause
+- Updating detection rules
+- Recommending security improvements
+- Closing the incident ticket
+
+**Output:** Incident formally closed, with improvements in place to reduce the likelihood of similar attacks in the future.
+
+# 5.0 Conclusion
+
+This project provided practical experience in analyzing security logs to distinguish between normal and suspicious activities.
+
+Through the analysis, I identified potential security incidents such as failed login attempts, SSH brute-force attacks, suspicious IP addresses, and successful logins after multiple failed attempts.
+
+I also developed basic detection rules, classified incidents based on their severity, and recommended appropriate response actions following the incident response lifecycle.
+
+From this project, I learned how a Security Operations Center (SOC) analyst monitors system logs, investigates security events, assesses risks, and responds to potential threats.
+
+Overall, this project strengthened my understanding of log analysis, incident detection, incident response, and the importance of documenting security incidents in a professional manner.
