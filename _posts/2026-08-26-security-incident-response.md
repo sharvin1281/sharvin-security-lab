@@ -35,24 +35,10 @@ The investigation focused on authentication events, failed login attempts, succe
 
 ---
 
-# 1.0 Log Analysis
+## 1.0 Log Analysis
 
-## 1.1 Introduction
 
-Log analysis is an important activity in cybersecurity because system logs provide valuable information about what is happening within an operating system and its services.
-
-By examining authentication and system events, security analysts can identify normal system behaviour as well as suspicious activities that may indicate an attempted or successful attack.
-
-For this project, two primary log files were analyzed:
-
-- `auth.log`
-- `syslog.log`
-
-The analysis was performed to distinguish between legitimate system activities and suspicious authentication behaviour.
-
----
-
-## 1.2 Overview of the Log Files
+## 1.1 Overview of the Log Files
 
 The following log files were used during the investigation.
 
@@ -71,7 +57,7 @@ The `syslog.log` file contains general operating system and service-related even
 
 ---
 
-## Analysis
+# Analysis
 
 The combination of `auth.log` and `syslog.log` provides a broader view of system activity.
 
@@ -79,23 +65,23 @@ The authentication log is particularly useful for identifying possible unauthori
 
 This initial analysis provides the foundation for identifying suspicious activities in the following sections.
 
-# 1.3 Failed Login Attempts
+## 1.2 Failed Login Attempts
 
-## What Was Observed?
+# What Was Observed?
 
 Multiple failed login attempts were identified during the analysis of the authentication logs.
 
-### Example
+# Example
 
 - Multiple "Failed password" entries were identified.
 - Most failed attempts originated from the same IP address.
 - Several different usernames were targeted.
 
-## Why Is This Suspicious?
+# Why Is This Suspicious?
 
 Repeated failed login attempts often indicate that someone is trying to guess a user's password through a brute-force attack.
 
-## Evidence
+# Evidence
 
 
 Failed password for admin from 198.51.100.23
@@ -104,13 +90,13 @@ Failed password for backup from 198.51.100.23
 
 Failed password for oracle from 198.51.100.23.
 
-## SOC Analysis
+# SOC Analysis
 The repeated failures from the same IP suggest an automated attack rather than a 
 legitimate user entering an incorrect password.
 
-# 1.4 Successful Logins
+## 1.3 Successful Logins
 
-## What Was Observed?
+# What Was Observed?
 
 The logs contained successful authentication events.
 
@@ -122,20 +108,20 @@ The logs contained successful authentication events.
 | Accepted password | backup |
 | Accepted password | sysupdate |
 
-## Normal vs Suspicious
+# Normal vs Suspicious
 
 | Normal Activity | Suspicious Activity |
 |----------------|---------------------|
 | Public key login by authorized users | Successful login immediately after numerous failed attempts |
 | Login during expected working hours | Successful login from an attacking IP |
 
-## Why Is It Important?
+# Why Is It Important?
 
 A successful login following repeated failed attempts may indicate that the attacker successfully guessed the user's password.
 
-# 1.5 Suspicious IP Addresses
+## 1.4 Suspicious IP Addresses
 
-## What Was Observed?
+# What Was Observed?
 
 One IP address repeatedly attempted to access multiple user accounts.
 
@@ -145,7 +131,7 @@ One IP address repeatedly attempted to access multiple user accounts.
 |-----------------------|
 | 198.51.100.23 |
 
-## Why Is This Suspicious?
+# Why Is This Suspicious?
 
 A legitimate user normally accesses only their own account.
 
@@ -155,7 +141,7 @@ An attacker commonly:
 - Performs password guessing
 - Continues until a login succeeds
 
-## Possible Impact
+# Possible Impact
 
 | Impact | Description |
 |--------|-------------|
@@ -163,7 +149,7 @@ An attacker commonly:
 | Account compromise | User accounts may be compromised if the attacker successfully authenticates. |
 | Data theft | Compromised accounts may be used to access or steal sensitive information. |
 
-# 1.6 Unusual User Activities
+## 1.5 Unusual User Activities
 
 ## What Was Observed?
 
@@ -187,9 +173,9 @@ Attackers often test many common usernames before guessing passwords.
 
 This behavior is called **username enumeration**.
 
-# 1.7 Other Abnormal Behaviour
+## 1.6 Other Abnormal Behaviour
 
-## Examples
+# Examples
 
 The following abnormal behaviours were identified during the log analysis:
 
@@ -201,7 +187,7 @@ The following abnormal behaviours were identified during the log analysis:
 
 ---
 
-# 1.8 Summary of Log Analysis
+## 1.7 Summary of Log Analysis
 
 The following table summarizes the activities identified during the log analysis and their classifications.
 
@@ -212,11 +198,11 @@ The following table summarizes the activities identified during the log analysis
 | Reload Nginx | Normal | Service configuration reload |
 | Public Key Login | Normal | Secure authentication |
 
-# 2.0 Detection Logic
+## 2.0 Detection Logic
 
 Detection logic defines the conditions used to identify potentially suspicious authentication activities. The following rules were developed based on the log analysis performed in this project.
 
-## Rule 1
+# Rule 1
 
 ### Detection Rule
 
@@ -232,7 +218,7 @@ Repeated failed logins often indicate a brute-force password attack.
 
 ---
 
-## Rule 2
+# Rule 2
 
 ### Detection Rule
 
@@ -248,7 +234,7 @@ Attackers commonly enumerate usernames before attempting password attacks.
 
 ---
 
-## Rule 3
+# Rule 3
 
 ### Detection Rule
 
@@ -264,7 +250,7 @@ This may indicate the attacker successfully guessed the user's password.
 
 ---
 
-## Rule 4
+# Rule 4
 
 ### Detection Rule
 
@@ -280,7 +266,7 @@ This behaviour may indicate compromised credentials or lateral movement.
 
 ---
 
-## Rule 5
+# Rule 5
 
 ### Detection Rule
 
@@ -296,7 +282,7 @@ Administrative logins outside business hours may indicate unauthorized access.
 
 ---
 
-## Detection Rules Summary
+# Detection Rules Summary
 
 | Rule | Detection Condition | Reason | Severity |
 |------|----------------------|--------|----------|
@@ -310,7 +296,7 @@ Administrative logins outside business hours may indicate unauthorized access.
 | Successful Login After Failures | Suspicious | Possible account compromise |
 | Same IP Repeated Attempts | Suspicious | Automated attack |
 
-# 4.0 Detection Logic
+## 4.0 Detection Logic
 
 The incident response process follows a structured workflow consisting of six stages:
 
@@ -318,7 +304,7 @@ The incident response process follows a structured workflow consisting of six st
 
 ---
 
-## Step 1 – Detection
+# Step 1 – Detection
 
 Security monitoring tools identify suspicious activities from the logs, such as repeated failed logins, invalid usernames, or successful logins after many failed attempts.
 
@@ -326,7 +312,7 @@ Security monitoring tools identify suspicious activities from the logs, such as 
 
 ---
 
-## Step 2 – Alert
+# Step 2 – Alert
 
 Detection rules trigger an alert in the Security Information and Event Management (SIEM) system.
 
@@ -342,7 +328,7 @@ The alert contains information such as:
 
 ---
 
-## Step 3 – Investigation
+# Step 3 – Investigation
 
 The SOC analyst reviews the logs to determine whether the alert represents a genuine security incident.
 
@@ -358,7 +344,7 @@ The investigation includes:
 
 ---
 
-## Step 4 – Response
+# Step 4 – Response
 
 If malicious activity is confirmed, immediate actions are taken to contain the threat.
 
@@ -374,7 +360,7 @@ Possible actions include:
 
 ---
 
-## Step 5 – Recovery
+# Step 5 – Recovery
 
 Affected systems are restored to a secure state.
 
@@ -390,7 +376,7 @@ Typical recovery actions include:
 
 ---
 
-## Step 6 – Closure
+# Step 6 – Closure
 
 After the incident is resolved, the SOC team documents the findings and lessons learned.
 
@@ -406,7 +392,7 @@ The closure process includes:
 
 ---
 
-## Incident Response Workflow
+# Incident Response Workflow
 
 | Stage | Main Activity | Output |
 |-------|---------------|--------|
@@ -417,7 +403,7 @@ The closure process includes:
 | Recovery | Restore affected systems to a secure state | Normal operations resume |
 | Closure | Document findings and lessons learned | Incident formally closed |
 
-# 4.0 Detection Logic
+## 4.0 Detection Logic
 
 The incident response process consists of six stages:
 
@@ -425,7 +411,7 @@ The incident response process consists of six stages:
 
 ---
 
-## Step 1 – Detection
+# Step 1 – Detection
 
 Security monitoring tools identify suspicious activities from the logs, such as repeated failed logins, invalid usernames, or successful logins after many failed attempts.
 
@@ -433,7 +419,7 @@ Security monitoring tools identify suspicious activities from the logs, such as 
 
 ---
 
-## Step 2 – Alert
+# Step 2 – Alert
 
 Detection rules trigger an alert in the Security Information and Event Management (SIEM) system.
 
@@ -449,7 +435,7 @@ The alert contains information such as:
 
 ---
 
-## Step 3 – Investigation
+# Step 3 – Investigation
 
 The SOC analyst reviews the logs to determine whether the alert represents a genuine security incident.
 
@@ -465,7 +451,7 @@ The investigation includes:
 
 ---
 
-## Step 4 – Response
+# Step 4 – Response
 
 If malicious activity is confirmed, immediate actions are taken to contain the threat.
 
@@ -481,7 +467,7 @@ Possible actions include:
 
 ---
 
-## Step 5 – Recovery
+# Step 5 – Recovery
 
 Restore affected systems to a secure state.
 
@@ -497,7 +483,7 @@ Typical recovery actions include:
 
 ---
 
-## Step 6 – Closure
+# Step 6 – Closure
 
 After the incident is resolved, the SOC team documents the findings and lessons learned.
 
@@ -511,7 +497,7 @@ The closure process includes:
 
 **Output:** Incident formally closed, with improvements in place to reduce the likelihood of similar attacks in the future.
 
-# 5.0 Conclusion
+## 5.0 Conclusion
 
 This project provided practical experience in analyzing security logs to distinguish between normal and suspicious activities.
 
