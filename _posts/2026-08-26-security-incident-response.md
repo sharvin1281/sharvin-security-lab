@@ -42,7 +42,7 @@ The following log files were provided for this security incident response invest
 
 | Log File | Description |
 |----------|-------------|
-| [`auth.log`](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/blob/main/assets/logs/auth.log) | Authentication logs containing login attempts, SSH access, successful logins, failed logins, and user authentication events. |
+| [`auth.log`]([https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/blob/main/assets/logs/auth.log]([https://github.com/sharvin1281/sharvin-security-lab/blob/main/assets/logs/auth.log](https://github.com/sharvin1281/sharvin-security-lab/blob/main/assets/logs/syslog.log))) | Authentication logs containing login attempts, SSH access, successful logins, failed logins, and user authentication events. |
 | [`syslog.log`](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/blob/main/assets/logs/syslog.log) | System logs containing operating system events, services, scheduled tasks, and application activities. |
 
 ### Download / View the Logs
