@@ -34,6 +34,23 @@ The investigation focused on authentication events, failed login attempts, succe
 > This project was performed for educational and cybersecurity training purposes. The analysis was conducted using the provided log files in a controlled environment. The techniques and findings discussed in this report should only be applied to systems and data for which proper authorization has been obtained.
 
 ---
+---
+
+# Log Files
+
+The following log files were provided for this security incident response investigation.
+
+| Log File | Description |
+|----------|-------------|
+| [`auth.log`](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/blob/main/assets/logs/auth.log) | Authentication logs containing login attempts, SSH access, successful logins, failed logins, and user authentication events. |
+| [`syslog.log`](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/blob/main/assets/logs/syslog.log) | System logs containing operating system events, services, scheduled tasks, and application activities. |
+
+### Download / View the Logs
+
+- [View `auth.log`](https://github.com/sharvin1281/sharvin-security-lab/blob/main/assets/logs/auth.log)
+- [View `syslog.log`](https://github.com/sharvin1281/sharvin-security-lab/blob/main/assets/logs/syslog.log)
+
+> **Note:** These log files were used as the evidence source for the analysis performed in this report.
 
 ## 1.0 Log Analysis
 
